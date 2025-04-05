@@ -1,0 +1,13 @@
+@import "tailwindcss";
+/* src/index.css */
+.input-field {
+  @apply w-full p-3 rounded-xl bg-gray-800 border border-gray-700 text-white;
+}
+
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition-all duration-200;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition-all duration-200;
+}
