@@ -42,18 +42,38 @@ const Frontpage = () => {
   const handleSendEmail = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('https://secure-data-handling.onrender.com/send-email', {
-            email,
-            message
-          });
-          
-      setEmailDetails(res.data.emailDetails || null);
-      setEmail('');
-      setMessage('');
+      const res = await axios.post('https://secure-data-handling.onrender.com/send-email', {
+        email,
+        message
+      });
+  
+      if (res.data.emailDetails) {
+        setEmailDetails(res.data.emailDetails);
+        setEmail('');
+        setMessage('');
+      } else {
+        console.warn('Email sent, but response format was unexpected:', res.data);
+      }
+  
     } catch (err) {
       console.error('Error sending email:', err);
+  
+      let errorMsg = 'Failed to send email. Please try again later.';
+  
+      if (err.response && err.response.data && err.response.data.error) {
+        errorMsg = err.response.data.error;
+      }
+  
+      setEmailDetails({
+        recipient: email,
+        message: message,
+        signed: false,
+        time: new Date().toISOString(),
+        error: errorMsg
+      });
     }
   };
+  
 
   const handleVerifySignature = async (e) => {
     e.preventDefault();
