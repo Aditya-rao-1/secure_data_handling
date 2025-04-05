@@ -19,7 +19,7 @@ const Frontpage = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('http://localhost:5000/add-user', { name, password });
+      const res = await axios.post('https://secure-data-handling.onrender.com/add-user', { name, password });
       setUsers(res.data.users || []);
       setName('');
       setPassword('');
@@ -31,7 +31,7 @@ const Frontpage = () => {
   const handleDecrypt = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('http://localhost:5000/decrypt', { globalPassword });
+        const res = await axios.post('https://secure-data-handling.onrender.com/decrypt', { globalPassword });
       setUsers(res.data.users || []);
       setGlobalPassword('');
     } catch (err) {
@@ -42,7 +42,7 @@ const Frontpage = () => {
   const handleSendEmail = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('http://localhost:5000/send-email', {
+        const res = await axios.post('https://secure-data-handling.onrender.com/send-email', {
             email,
             message
           });
@@ -58,7 +58,7 @@ const Frontpage = () => {
   const handleVerifySignature = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('http://localhost:5000/verify-signature', {
+        const res = await axios.post('https://secure-data-handling.onrender.com/verify-signature', {
             message: verifyMessage,
             signature: verifySignatureText,
           });
